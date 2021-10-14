@@ -94,14 +94,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendPath("search");
-        uriBuilder.appendQueryParameter("q","football");
+        uriBuilder.appendPath("football");
+        uriBuilder.appendQueryParameter("api-key", "385f8682-c7bb-403d-a0de-199cf69885dd");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
 
-        Log.e(uriBuilder.toString(),"test");
-        String final_URL = uriBuilder.toString()+API_KEY;
+        Log.e(uriBuilder.toString(), "test");
 
-        return new NewsLoader(this, final_URL);
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
