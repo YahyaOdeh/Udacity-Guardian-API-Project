@@ -18,6 +18,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class QueryUtils {
 
@@ -150,9 +151,19 @@ public class QueryUtils {
 
                 String section = currentNews.getString("sectionName");
 
-                News news = new News(title, url, time, section);
+                JSONArray tagsArray = currentNews.getJSONArray("tags");
 
-                newsList.add(news);
+                for (int j = 0; j < tagsArray.length(); j++) {
+
+                    JSONObject authorNameObject = tagsArray.getJSONObject(j);
+
+                    String author = authorNameObject.getString("firstName") + " " + authorNameObject.getString("lastName");
+
+                    News news = new News(title, url, time, section, author.toUpperCase());
+
+                    newsList.add(news);
+                }
+
             }
 
         } catch (JSONException e) {

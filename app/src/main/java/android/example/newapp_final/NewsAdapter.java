@@ -47,6 +47,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         sectionView.setText(section);
 
+        TextView authorView = listItemView.findViewById(R.id.AuthorName_text);
+
+        String author = currentNews.getAuthor();
+
+        authorView.setText(author);
+
         // Return the list item view that is now showing the appropriate data
         return listItemView;
     }

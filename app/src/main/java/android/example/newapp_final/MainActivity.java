@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,7 +22,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/football?api-key=385f8682-c7bb-403d-a0de-199cf69885dd";
+            "https://content.guardianapis.com";
+
+    private static final String API_KEY =
+            "&api-key=385f8682-c7bb-403d-a0de-199cf69885dd";
 
     private static final int NEWS_LOADER_ID = 0;
 
@@ -87,7 +91,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
-        return new NewsLoader(this, NEWS_REQUEST_URL);
+        Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendPath("search");
+        uriBuilder.appendQueryParameter("q","football");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+
+        Log.e(uriBuilder.toString(),"test");
+        String final_URL = uriBuilder.toString()+API_KEY;
+
+        return new NewsLoader(this, final_URL);
     }
 
     @Override

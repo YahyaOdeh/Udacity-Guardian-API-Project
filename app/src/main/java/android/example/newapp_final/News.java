@@ -12,11 +12,14 @@ public class News {
 
     private String mUrl;
 
-    public News(String title, String url, String time, String section) {
+    private String mAuthor;
+
+    public News(String title, String url, String time, String section, String author) {
         mTitle = title;
         mSection = section;
         mTime = time;
         mUrl = url;
+        mAuthor = author;
     }
 
     public String getTitle() {
@@ -33,6 +36,10 @@ public class News {
 
     public String getTime() {
         return mTime;
+    }
+
+    public String getAuthor() {
+        return mAuthor;
     }
 
 }
