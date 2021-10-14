@@ -24,9 +24,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final String NEWS_REQUEST_URL =
             "https://content.guardianapis.com";
 
-    private static final String API_KEY =
-            "&api-key=385f8682-c7bb-403d-a0de-199cf69885dd";
-
     private static final int NEWS_LOADER_ID = 0;
 
     private NewsAdapter mAdapter;
